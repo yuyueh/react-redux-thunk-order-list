@@ -6,7 +6,7 @@ API mock by [https://designer.mocky.io/](https://designer.mocky.io/)
 ### Development
 
 ```
-npm run dev
+npm run start
 ```
 And then point your browser to `localhost:3000`
 
