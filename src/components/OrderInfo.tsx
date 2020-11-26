@@ -4,7 +4,11 @@ import { Order } from '../store/order/types/models';
 import { OrderEnum } from '../store/order/types/enums';
 import { formateDateString } from '../utils/common';
 
-interface OrderStateProps {
+interface IOrderProps {
+    order: Order;
+}
+
+interface IOrderStateProps {
     isCompleted: boolean;
 }
 
@@ -25,7 +29,7 @@ const CoverImgWrapper = styled.div`
 
 const CoverImgItem = styled.img`
     width: 100px;
-    ${(props: OrderStateProps) =>
+    ${(props: IOrderStateProps) =>
         props.isCompleted ? 'filter: grayscale(100%)' : ''}
 `;
 
@@ -43,7 +47,7 @@ const DetailHeader = styled.div`
 `;
 
 const StatusInfo = styled.div`
-    color: ${(props: OrderStateProps) =>
+    color: ${(props: IOrderStateProps) =>
         props.isCompleted ? 'black' : 'green'};
 `;
 
@@ -67,7 +71,7 @@ const RightArrow = styled.div`
     transform: rotate(45deg);
 `;
 
-const OrderComponent = ({ order }: { order: Order }) => {
+const OrderInfoComponent: React.FC<IOrderProps> = ({ order }) => {
     const isCompleted = [OrderEnum.Delivered, OrderEnum.Cancelled].some(
         (e) => e === order.status?.code
     );
@@ -101,4 +105,4 @@ const OrderComponent = ({ order }: { order: Order }) => {
     );
 };
 
-export default OrderComponent;
+export default OrderInfoComponent;

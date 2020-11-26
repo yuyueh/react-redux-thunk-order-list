@@ -5,6 +5,11 @@ import { OrderEnum } from '../store/order/types/enums';
 import OrderInfo from './OrderInfo';
 import LoadingComponent from './Loading';
 
+interface IOrderListingProps {
+    orderListing: Order[];
+    isLoading: boolean;
+}
+
 const Wrapper = styled.div`
     border: #8080803d solid 1px;
     font-size: large;
@@ -32,12 +37,9 @@ const filterCompletedOrder = (o: Order) =>
 const orderByDateByDesc = (a: Order, b: Order) =>
     new Date(a.date) > new Date(b.date) ? -1 : 1;
 
-const OrderListingComponent = ({
+const OrderListingComponent: React.FC<IOrderListingProps> = ({
     orderListing,
     isLoading,
-}: {
-    orderListing: Order[];
-    isLoading: boolean;
 }) => {
     const processingOrderListing = orderListing
         .filter(filterProcessingOrder)
